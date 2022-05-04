@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body__demo{
+    background-color: #202020;
+}
+
+.body__demo > .title__demo{
+    text-align: center;
+    color: #FFF;
+    margin-top: 25px;
+}
+
+.form__demo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #CDCCDC;
+    border-radius: 10px;
+    width: 700px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.form__demo input{
+    margin: 10px 0;
+    padding: 8px;
+    width: 235px;
+    color: #202020;
+    border-radius: 5px;
+}
+
+.form__demo input:focus{
+    outline: none;
+}
