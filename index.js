@@ -1,18 +1,18 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const routeAuth = require('./routes/auth')
+const routeAuth = require('./routes/auth');
+const routeEvents = require('./routes/events');
+const { dbConecting } = require('./database/configDB');
+const cors = require('cors');
 dotenv.config();
 
-
-
-const port = process.env.PORT;
-
-
+const port = process.env.PORT || 3000;
 // Crear el servidor de express
 const app = express();
 
-// Middelware --> Es una funcion que se ejecuta cuando se hace una peticion
-//                al servidor.
+app.use(cors());
+// Bases de datos
+dbConecting();
 
 app.use(express.static('public'));
 
@@ -20,7 +20,8 @@ app.use(express.static('public'));
 app.use(express.json());
 
 //Rutas
-app.use('/auth', routeAuth );
+app.use('/api/auth', routeAuth);
+app.use('/api/events', routeEvents);
 
 // Escucha peticiones
 app.listen(port , () => console.log(`Servidor corriendo en el puerto http://localhost:${port}`));
