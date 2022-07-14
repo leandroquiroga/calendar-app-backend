@@ -43,6 +43,31 @@ Se tiene dos tipos de modelos de bases de datos en la que se encuentra la estruc
 ## Rutas
 Se dividen en dos rutas, una para Auth en la que se encuentran la pagaina de reguistro, login y para renovar el token en la que deben pasar por una validacion para ejecutar sus respectivos middleware. Por otro lado se encuentra la ruta de eventos, en donde se encuentra todas las ruta para ejecutar la logica del CRUD. 
 
+## Scripts💻
+```
+git clone https://github.com/leandroquiroga/calendar-app-backend.git
+
+cd calendar-app-backend
+
+npm start
+
+Happy Coding 🎉🎉
+```
+## Documentacion 📋
+En este enlace dejo adjuntada la documentacion de completa de API 
+
+- [Documentacion](https://documenter.getpostman.com/view/18336036/UzQuPREL)
+
+- Paso 1: Ir a la opcion de LANGUAGE
+
+- Paso 2: Seleccionar JavaScrpt - Fetch
+
+- Paso 3: Seleccionar un opcion
+
+- Paso 4: Probarla en Postman
+
+Aclaracion: Para correrala en Postman el servidor debe estar corriendo en [Localhost](http://localhost:4000)
+
 # ACLARACION IMPORTANTE ⛔️
 Esta API puede ser usada para cualquier Fronted, con cualquier framework, fue creada con fines educativos. Para probar esta API 
 se puede utilizar Postman, Soap-ui, etc.
