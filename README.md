@@ -60,11 +60,19 @@ En este enlace dejo adjuntada la documentacion de completa de API
 
 - Paso 1: Ir a la opcion de LANGUAGE
 
+![Documentacion API - Paso 1](https://user-images.githubusercontent.com/80013958/179017973-0a01cd9a-73bc-48c2-9ae8-8158a2b4a38e.png)
+
 - Paso 2: Seleccionar JavaScrpt - Fetch
+
+![Documentacion API - Paso 2](https://user-images.githubusercontent.com/80013958/179017997-1e1824f7-4336-4471-9dcb-538dd14a8125.png)
 
 - Paso 3: Seleccionar un opcion
 
+![Documentacion API - Paso 3](https://user-images.githubusercontent.com/80013958/179018010-8e8da1f9-eec3-4fd2-ae47-7bafb3cac485.png)
+
 - Paso 4: Probarla en Postman
+
+![Documentacion API - Paso 4](https://user-images.githubusercontent.com/80013958/179018031-e9a7a39b-5075-4b4e-b978-1319bdda08a1.png)
 
 Aclaracion: Para correrala en Postman el servidor debe estar corriendo en [Localhost](http://localhost:4000)
 
