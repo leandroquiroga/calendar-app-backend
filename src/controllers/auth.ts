@@ -62,7 +62,7 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 };
 // Registro de usuario
-const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
     // Busqueda del email en la base de datos
@@ -98,9 +98,3 @@ const registerUser = async (req: Request, res: Response) => {
     });
   }
 };
-
-export default {
-  renewToken, 
-  loginUser,
-  registerUser,
-}

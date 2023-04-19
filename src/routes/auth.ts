@@ -1,9 +1,9 @@
 /*  Rutas de usuarios --> port + /auth */
-const { Router } = require('express');
-const {check } = require('express-validator')
-const { renewToken, loginUser, registerUser } = require('../controllers/auth');
-const { validatorJWT } = require('../middlewares/validatorJWT');
-const { fieldValidator } = require('./../middlewares/fieldValidator');
+import { Router } from 'express';
+import {check } from 'express-validator';
+import { renewToken, loginUser, registerUser } from '../controllers/auth';
+import { validatorJWT } from '../middlewares/validatorJWT';
+import { fieldValidator } from './../middlewares/fieldValidator';
 const router = Router();
 
 // Revalida el JSON Web Token
