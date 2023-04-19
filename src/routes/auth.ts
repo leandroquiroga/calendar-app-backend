@@ -30,4 +30,5 @@ router.post(
   fieldValidator,
   loginUser
 );
-module.exports = router;
+
+export default router;

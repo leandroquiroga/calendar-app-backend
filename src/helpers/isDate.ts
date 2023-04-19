@@ -1,6 +1,6 @@
-const moment = require('moment');
+import moment from 'moment';
 
-const isDate = (value) => {
+export const isDate = (value: any) => {
   // Si el value no existe retorna true
   if (!value) return false
   // En caso que exista chequea que la fecha sea valida.
@@ -10,5 +10,3 @@ const isDate = (value) => {
   };
   return false
 };
-
-module.exports = isDate

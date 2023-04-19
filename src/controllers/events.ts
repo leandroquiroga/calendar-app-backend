@@ -1,7 +1,14 @@
-const { response } = require('express');
-const Events = require('../models/Events');
+import { Request as ExpressRequest, Response } from "express";
+import Events from '../models/Events';
 
-const getEvents = async (req, res = response) => {
+// Realizamos una extencion de la interface de express para 
+// agregar las propiedades uid, name 
+interface Request extends ExpressRequest {
+  uid?: string;
+  name?: string;
+};
+
+export const getEvents = async (_req: Request, res: Response) => {
   const events = await Events.find().populate('user', 'name');
   // Cheaquear si hay eventos
   (events.length > 0)
@@ -14,12 +21,12 @@ const getEvents = async (req, res = response) => {
       msg: 'No hay eventos disponibles'
   });
 };
-const createEvents =  async (req, res = response) => {
+export const createEvents =  async (req: Request, res: Response) => {
 
   const event = new Events(req.body);
 
   try {
-    event.user = req.uid;
+    event.user = req.query.uid as string;
     const saveEvent = await event.save();
     res.status(200).json({
       ok: true,
@@ -33,7 +40,7 @@ const createEvents =  async (req, res = response) => {
   };
 };
 
-const updateEvents = async (req, res = response) => {
+export const updateEvents = async (req: Request, res: Response) => {
   const { id } = req.params;
   const uid = req.uid;
 
@@ -60,7 +67,7 @@ const updateEvents = async (req, res = response) => {
       user: uid
     };
 
-    const updatedEvent = await Events.findOneAndUpdate(id, newEvent, {new: true});
+    const updatedEvent = await Events.findOneAndUpdate({ id }, newEvent, {new: true});
     res.status(200).json({
       ok: true,
       evento: updatedEvent
@@ -74,9 +81,11 @@ const updateEvents = async (req, res = response) => {
   };
 };
 
-const deleteEvents = async (req, res = response) => {
+export const deleteEvents = async (req: Request, res: Response) => {
   const { id } = req.params;
   const uid = req.uid;
+
+  console.log(uid)
 
   try {
     const event = await Events.findById(id);
@@ -111,9 +120,3 @@ const deleteEvents = async (req, res = response) => {
   };
 };
 
-module.exports = {
-  getEvents,
-  createEvents,
-  updateEvents,
-  deleteEvents
-}

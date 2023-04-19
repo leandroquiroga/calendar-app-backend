@@ -1,14 +1,10 @@
-const { Router } = require('express');
-const { check } = require('express-validator');
-const { validatorJWT } = require('../middlewares/validatorJWT');
-const { fieldValidator } = require('../middlewares/fieldValidator');
-const { isDate } = require('../helpers/isDate');
-const {
-  getEvents,
-  createEvents,
-  updateEvents,
-  deleteEvents
-} = require('./../controllers/events');
+import { Router } from 'express';
+import { check } from 'express-validator';
+import { validatorJWT } from '../middlewares/validatorJWT';
+import { fieldValidator } from '../middlewares/fieldValidator';
+import { isDate } from '../helpers/isDate';
+import { createEvents, deleteEvents, getEvents, updateEvents } from '../controllers/events';
+
 const router = Router();
 
 // Todas las rutas deben validar el token
@@ -37,6 +33,6 @@ router.put(
   ],
   updateEvents);
 // Elimina los eventos
-router.delete('/:id', deleteEvents );
+router.delete('/:id', deleteEvents);
 
-module.exports = router;
+export default router;

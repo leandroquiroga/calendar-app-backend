@@ -1,10 +1,10 @@
-const { Schema, model} = require('mongoose');
+import { Schema, model} from 'mongoose';
+import { UserModels } from "../interfaces";
 
-
-const UsersSchema = Schema({
+const UsersSchema = new Schema<UserModels>({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
@@ -14,7 +14,7 @@ const UsersSchema = Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
 });
 
 UsersSchema.method('toJSON', function () { 
@@ -23,4 +23,4 @@ UsersSchema.method('toJSON', function () {
   return object;
 })
 
-module.exports = model('Users', UsersSchema);
+export default model('Users', UsersSchema);
