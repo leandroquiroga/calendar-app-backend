@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
+import { environment } from '../configuration/environment';
 
-const generateJWT = (uid, name) => {
+export const generateJWT = (uid?: string, name?: string) => {
   return new Promise((resolve, reject) => {
     const payload = { uid, name };
     // Registramos la firma del JWT; 
-    jwt.sign(payload, process.env.SECRET_JWT_SEED, {
+    jwt.sign(payload, environment.SECRET_JWT_SEED, {
       expiresIn: '2h',
     },(err, token) => {
       if (err) {
@@ -14,8 +15,4 @@ const generateJWT = (uid, name) => {
       resolve(token);
     });
   });
-};
-
-module.exports = {
-  generateJWT
 };

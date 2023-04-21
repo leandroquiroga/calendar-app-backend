@@ -1,6 +1,7 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
+import { EventModels } from '../interfaces';
 
-const EventsSchema = Schema({
+const EventsSchema = new Schema<EventModels>({
   title: {
     type: String,
     required: true
@@ -30,4 +31,4 @@ EventsSchema.method('toJSON', function () {
   object.id = _id;
   return object;
 });
-module.exports = model('Events', EventsSchema);
+export default model('Events', EventsSchema);
