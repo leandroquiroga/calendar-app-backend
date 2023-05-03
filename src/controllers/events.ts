@@ -24,15 +24,16 @@ export const getEvents = async (_req: Request, res: Response) => {
 export const createEvents =  async (req: Request, res: Response) => {
 
   const event = new Events(req.body);
-
   try {
-    event.user = req.query.uid as string;
+    event.user = req.uid as string;
     const saveEvent = await event.save();
+    console.log(saveEvent)
     res.status(200).json({
       ok: true,
       event: saveEvent
     });
   } catch (error) {
+    // console.log(error)
     return res.status(500).json({
       ok: false,
       msg: 'Hubo un error, por favor intente nuevamente',
@@ -46,7 +47,6 @@ export const updateEvents = async (req: Request, res: Response) => {
 
   try {
     const event = await Events.findById(id);
-    
     // Verificar si el evento existe
     if (!event) {
       return res.status(404).json({

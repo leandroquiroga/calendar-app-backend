@@ -12,8 +12,7 @@ interface Request extends ExpressRequest {
 
 export const validatorJWT = (req: Request, res: Response, next: NextFunction) => {
   // x-token headers
-  const token = req.header("x-token");
-
+  const token  = req.headers["authorization"];
   // Verifica que si no exite el token
   if (!token) {
     return res.status(401).json({
@@ -30,11 +29,11 @@ export const validatorJWT = (req: Request, res: Response, next: NextFunction) =>
     // Modificamos la request para pasarla por referencia a traves del next
     req.uid = uid;
     req.name = name
-  } catch (error) {
-    return res.status(401).json({
-      ok: false,
-      msg: "Token no valido",
-    });
-  }
-  next();
+  } catch (error: any) {
+    res.status(401).json({
+        ok: false,
+        msg: "Token no valido",
+     });
+    }
+    next();
 };

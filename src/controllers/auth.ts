@@ -12,15 +12,25 @@ interface Request extends ExpressRequest {
 
 // Renovacion de tokens
 export const renewToken = async (req: Request, res: Response) => {
-  const { uid, name } = req;
-  // Generar un nuevo token 
-  const token = await generateJWT(uid, name);
-  res.json({
-    ok: true,
-    uid,
-    name,
-    token
-  });
+  try {
+    const { uid, name } = req;
+    // Generar un nuevo token
+    const token = await generateJWT(uid, name);
+    res.json({
+      ok: true,
+      uid,
+      name,
+      token,
+    });    
+  } catch (error: any) {
+    console.log(error);
+    return res.status(400).json({
+      message: 'Hubo un error al renovar el token, por favor intente nuevamente',
+      ok: false,
+      error
+    })
+  }
+
 };
 
 // Logeo de usuario
