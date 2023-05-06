@@ -11,29 +11,27 @@ interface Request extends ExpressRequest {
 };
 
 export const validatorJWT = (req: Request, res: Response, next: NextFunction) => {
-  // x-token headers
-  const token  = req.headers["authorization"];
-  // Verifica que si no exite el token
-  if (!token) {
-    return res.status(401).json({
-      ok: false,
-      msg: "No hay token en la peticion",
-    });
-  }
-
+  
   try {
-    // Extraemos la informacion del usuario verificando su JWT
-    const decode = jwt.verify(token, environment.SECRET_JWT_SEED) as JWTPayload;
-    const { name, uid } = decode;
+    // x-token headers
+    const token = req.headers["authorization"];
+    // Verifica que si no exite el token
+    if (token) {
+      // Extraemos la informacion del usuario verificando su JWT
+      const decode = jwt.verify(
+        token,
+        environment.SECRET_JWT_SEED
+      ) as JWTPayload;
+      const { name, uid } = decode;
 
-    // Modificamos la request para pasarla por referencia a traves del next
-    req.uid = uid;
-    req.name = name
-  } catch (error: any) {
-    res.status(401).json({
-        ok: false,
-        msg: "Token no valido",
-     });
-    }
+      // Modificamos la request para pasarla por referencia a traves del next
+      req.uid = uid;
+      req.name = name;
+    };
+
     next();
+  } catch (error: any) {
+    console.log(error)
+    next()
+  }
 };

@@ -12,7 +12,7 @@ export const generateJWT = (uid?: string, name?: string) => {
     const payload: Payload = { uid, name };
     // Registramos la firma del JWT; 
     jwt.sign(payload, environment.SECRET_JWT_SEED, {
-      expiresIn: '2h',
+      expiresIn: '24h',
     },(err, token) => {
       if (err) {
         console.log(err);
