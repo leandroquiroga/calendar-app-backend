@@ -27,7 +27,6 @@ export const createEvents =  async (req: Request, res: Response) => {
   try {
     event.user = req.uid as string;
     const saveEvent = await event.save();
-    console.log(saveEvent)
     res.status(200).json({
       ok: true,
       event: saveEvent
@@ -66,11 +65,10 @@ export const updateEvents = async (req: Request, res: Response) => {
       ...req.body,
       user: uid
     };
-
-    const updatedEvent = await Events.findOneAndUpdate({ id }, newEvent, {new: true});
+    await Events.findOneAndUpdate({ id }, newEvent, {new: true});
     res.status(200).json({
       ok: true,
-      evento: updatedEvent
+      msg: 'El evento se actualizo correctamente'
     });
   } catch (error) {
     console.log(error);
@@ -84,9 +82,7 @@ export const updateEvents = async (req: Request, res: Response) => {
 export const deleteEvents = async (req: Request, res: Response) => {
   const { id } = req.params;
   const uid = req.uid;
-
-  console.log(uid)
-
+  
   try {
     const event = await Events.findById(id);
     // Verificamos que el elemento exista
